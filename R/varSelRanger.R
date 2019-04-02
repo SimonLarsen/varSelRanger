@@ -5,7 +5,7 @@
 #' @param data Training data of class \code{data.frame}, \code{matrix} or \code{dgCMatrix}.
 #' @param dependent.variable.name Name of the dependent variable. For survival forests this is the time variable.
 #' @param formula Object of class formula or character describing the model to fit. Interaction terms supported only for numerical variables. (Formula interface not yet supported in varSelRanger).
-#' @param frac Fraction of top variables to keep after each iteration.
+#' @param frac Fraction of top variables to drop after each iteration.
 #' @param importance Variable importance mode. One of 'none', 'impurity', 'impurity_corrected', 'permutation'. The 'impurity' measure is the Gini index for classification, the variance of the responses for regression and the sum of test statistics (see splitrule) for survival.
 #' @param min.vars Minimum number of variables allowed in a model.
 #' @param ... Further arguments to be passed to \link{\code{ranger::ranger}}.
@@ -34,7 +34,7 @@ varSelRanger <- function(data, dependent.variable.name, formula=NULL, frac=0.2, 
     errors <- c(errors, fit$prediction.error)
 
     imp <- sort(fit$variable.importance, TRUE)
-    nsel <- floor(length(imp) * frac)
+    nsel <- floor(length(imp) * (1 - frac))
 
     vars <- names(head(imp, nsel))
   }

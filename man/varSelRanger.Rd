@@ -14,7 +14,7 @@ varSelRanger(data, dependent.variable.name, formula = NULL, frac = 0.2,
 
 \item{formula}{Object of class formula or character describing the model to fit. Interaction terms supported only for numerical variables. (Formula interface not yet supported in varSelRanger).}
 
-\item{frac}{Fraction of top variables to keep after each iteration.}
+\item{frac}{Fraction of top variables to drop after each iteration.}
 
 \item{min.vars}{Minimum number of variables allowed in a model.}
 
